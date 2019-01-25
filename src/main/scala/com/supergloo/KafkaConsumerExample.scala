@@ -2,7 +2,7 @@ package com.supergloo
 
 import java.util.{Collections, Properties}
 
-import org.apache.kafka.clients.consumer.{ConsumerConfig, KafkaConsumer}
+import org.apache.kafka.clients.consumer.{CommitFailedException, ConsumerConfig, KafkaConsumer}
 
 object KafkaConsumerExample {
 
@@ -18,8 +18,12 @@ object KafkaConsumerExample {
     p.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers)
     p.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer")
     p.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer")
+
+    // override defaults
 //    p.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest") // default is latest
+//    p.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, false) // default 5000 - change how often to commit offsets
 //    p.put(ConsumerConfig.AUTO_COMMIT_INTERVAL_MS_CONFIG, 10000) // default 5000 - change how often to commit offsets
+
     p
   }
 
@@ -37,6 +41,14 @@ object KafkaConsumerExample {
           record.key() + ", with value: " + record.value() +
           ") at on partition " + record.partition() + " at offset " + record.offset())
       }
+      /*
+      try
+        consumer.commitSync // if you don't want to auto commit which is default
+      catch {
+        case e: CommitFailedException =>
+         // possible rollback of processed records
+      }
+      */
     }
 
 
