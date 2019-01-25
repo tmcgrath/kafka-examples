@@ -14,7 +14,8 @@ parallelExecution in Test := false
 //  "-Dlog4j.configuration=log4j.properties")
 
 //https://github.com/sbt/sbt/issues/3618#issuecomment-424924293
-// libraryDependencies += "org.apache.kafka" %% "kafka-streams-scala" % "2.1.0"
+val kafka = "0.10.2.1"
+libraryDependencies += "org.apache.kafka" % "kafka-clients" % kafka
 
 val logback = "1.2.3"
 libraryDependencies += "ch.qos.logback" % "logback-core" % logback
