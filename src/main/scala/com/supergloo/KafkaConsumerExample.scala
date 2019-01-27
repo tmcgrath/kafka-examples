@@ -9,7 +9,7 @@ object KafkaConsumerExample {
   import scala.collection.JavaConverters._
 
   val bootstrapServers = ":9092,localhost:9092"
-  val groupId = "kafka-examples"
+  val groupId = "kafka-example"
   val topics = "example-topic"
 
   val props: Properties = {
@@ -19,11 +19,10 @@ object KafkaConsumerExample {
     p.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer")
     p.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer")
 
-    // override defaults
-//    p.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest") // default is latest
-//    p.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, false) // default 5000 - change how often to commit offsets
-//    p.put(ConsumerConfig.AUTO_COMMIT_INTERVAL_MS_CONFIG, 10000) // default 5000 - change how often to commit offsets
-
+    // if we want to adjust defaults
+     p.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest") // default is latest
+    // p.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, false) // default 5000 - change how often to commit offsets
+    // p.put(ConsumerConfig.AUTO_COMMIT_INTERVAL_MS_CONFIG, 10000) // default 5000 - change how often to commit offsets
     p
   }
 
@@ -41,12 +40,16 @@ object KafkaConsumerExample {
           record.key() + ", with value: " + record.value() +
           ") at on partition " + record.partition() + " at offset " + record.offset())
       }
+
+      // if you don't want to auto commit offset which is default
+      // comment out below and adjust properties above
       /*
       try
-        consumer.commitSync // if you don't want to auto commit which is default
+        consumer.commitSync
       catch {
         case e: CommitFailedException =>
          // possible rollback of processed records
+         // which may have failed to be delivered to ultimate destination
       }
       */
     }

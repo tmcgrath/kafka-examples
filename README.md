@@ -2,8 +2,7 @@
 
 ## Kafka Consumer
 
-// TODO - notes on how to run and link to tutorial
-
+Tutorial available at [ https://www.supergloo.com/fieldnotes/kafka-consumer/](https://www.supergloo.com/fieldnotes/kafka-consumer/)
 
 ## Kafka Producer
 
