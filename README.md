@@ -2,11 +2,11 @@
 
 ### Kafka Consumer
 
-Tutorial available at [https://www.supergloo.com/fieldnotes/kafka-consumer/](https://www.supergloo.com/fieldnotes/kafka-consumer/)
+Tutorial available at [Kafka Consumer Tutorial](https://www.supergloo.com/kafka/kafka-consumer/)
 
 ### Kafka Producer
 
-Tutorial available at [https://www.supergloo.com/fieldnotes/kafka-producer/](https://www.supergloo.com/fieldnotes/kafka-producer/)
+Tutorial available at [Kafka Producer Tutorial](https://www.supergloo.com/kafka/kafka-producer/)
 
 ## Running the Kafka Example Consumer and Producer 
 
